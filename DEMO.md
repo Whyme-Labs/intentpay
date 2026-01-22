@@ -4,7 +4,7 @@
 
 ## Live Demo URL
 
-**https://intentpay.swmengappdev.workers.dev**
+**https://stackpay.whymelabs.com**
 
 ---
 
@@ -163,7 +163,7 @@
 
 > "StackPay Links - bringing Ethereum liquidity to Stacks, one payment link at a time."
 
-> "Try it now at intentpay.swmengappdev.workers.dev"
+> "Try it now at stackpay.whymelabs.com"
 
 > "Thank you!"
 
@@ -223,7 +223,7 @@ BUILT WITH
 ```
 StackPay Links
 
-Live Demo: intentpay.swmengappdev.workers.dev
+Live Demo: stackpay.whymelabs.com
 GitHub: [your-repo-url]
 
 Bringing Ethereum liquidity to Stacks,

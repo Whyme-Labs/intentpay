@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-**https://intentpay.swmengappdev.workers.dev**
+**https://stackpay.whymelabs.com**
 
 See [DEMO.md](./DEMO.md) for the full demo guide and video script.
 
