@@ -4,6 +4,26 @@
 import { c32addressDecode } from 'c32check';
 
 /**
+ * Convert hex string to Uint8Array (works in all environments including Cloudflare Workers)
+ */
+function hexToBytes(hex: string): Uint8Array {
+  const bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < hex.length; i += 2) {
+    bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
+  }
+  return bytes;
+}
+
+/**
+ * Convert Uint8Array to hex string
+ */
+function bytesToHex(bytes: Uint8Array): string {
+  return Array.from(bytes)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+/**
  * Encodes a Stacks address to bytes32 format for xReserve depositToRemote
  *
  * Format: 11 bytes of 0x00 + [Stacks version byte] + [20-byte hash160]
@@ -18,23 +38,31 @@ export function encodeStacksAddressToBytes32(stacksAddress: string): `0x${string
     const [version, hash160] = c32addressDecode(stacksAddress);
 
     // Convert hash160 hex string to bytes
-    const hash160Bytes = Buffer.from(hash160, 'hex');
+    const hash160Bytes = hexToBytes(hash160);
 
     if (hash160Bytes.length !== 20) {
-      throw new Error('Invalid hash160 length');
+      throw new Error(`Invalid hash160 length: ${hash160Bytes.length}`);
     }
 
-    // Create the 32-byte buffer
+    // Create the 32-byte array (initialized to zeros)
     // Format: 11 bytes padding + 1 byte version + 20 bytes hash160
-    const bytes32 = Buffer.alloc(32, 0);
+    const bytes32 = new Uint8Array(32);
 
     // Set version byte at position 11
     bytes32[11] = version;
 
     // Copy hash160 starting at position 12
-    hash160Bytes.copy(bytes32, 12);
+    bytes32.set(hash160Bytes, 12);
 
-    return `0x${bytes32.toString('hex')}` as `0x${string}`;
+    // Log for debugging
+    console.log('Stacks encoding:', {
+      input: stacksAddress,
+      version,
+      hash160,
+      output: `0x${bytesToHex(bytes32)}`
+    });
+
+    return `0x${bytesToHex(bytes32)}` as `0x${string}`;
   } catch (error) {
     throw new Error(`Failed to encode Stacks address: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
