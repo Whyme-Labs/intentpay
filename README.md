@@ -49,7 +49,7 @@ StackPay Links is like "Stripe Payment Links, but cross-chain into Bitcoin L2." 
 
 **Ethereum Sepolia:**
 - USDC: `0x1c7d4b196cb0c7b01d743fbc6116a902379c7238`
-- xReserve: `0x008888878fcb3dfea7756fc3c1b0cd6fe44444a2`
+- xReserve: `0x008888878f94C0d87defdf0B07f46B93C1934442`
 
 **Stacks Testnet:**
 - USDCx: `ST3JDZQZXCQNXKKS31BDGPEW0ESEV1RCQ19R5MZTM.usdcx-v1`

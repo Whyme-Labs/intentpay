@@ -20,8 +20,8 @@ export const CONTRACTS = {
   // USDC on Sepolia (Circle's testnet USDC)
   USDC_SEPOLIA: '0x1c7d4b196cb0c7b01d743fbc6116a902379c7238' as `0x${string}`,
 
-  // xReserve Bridge on Sepolia
-  XRESERVE_SEPOLIA: '0x008888878fcb3dfea7756fc3c1b0cd6fe44444a2' as `0x${string}`,
+  // xReserve Bridge on Sepolia (correct address from USDCx Vault project)
+  XRESERVE_SEPOLIA: '0x008888878f94C0d87defdf0B07f46B93C1934442' as `0x${string}`,
 
   // Mainnet addresses (for reference)
   XRESERVE_MAINNET: '0x888888888fcb3dfea7756fc3c1b0cd6fe444443c' as `0x${string}`,

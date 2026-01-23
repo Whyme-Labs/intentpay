@@ -10,14 +10,14 @@ export const XRESERVE_ABI = [
     name: 'depositToRemote',
     stateMutability: 'nonpayable',
     inputs: [
+      { name: 'value', type: 'uint256' },
       { name: 'remoteDomain', type: 'uint32' },
       { name: 'remoteRecipient', type: 'bytes32' },
       { name: 'localToken', type: 'address' },
-      { name: 'value', type: 'uint256' },
       { name: 'maxFee', type: 'uint256' },
       { name: 'hookData', type: 'bytes' },
     ],
-    outputs: [],
+    outputs: [{ type: 'uint64' }],
   },
   {
     type: 'function',

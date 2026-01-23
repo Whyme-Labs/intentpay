@@ -129,13 +129,14 @@ export function usePayment({ recipientStacksAddress, amountUsdc, onSuccess, onEr
           abi: XRESERVE_ABI,
           functionName: 'depositToRemote',
           args: [
+            amountInUnits, // value (amount in 6 decimals) - MUST BE FIRST
             BRIDGE.STACKS_REMOTE_DOMAIN, // remoteDomain for Stacks
             remoteRecipient, // bytes32 encoded Stacks address
             CONTRACTS.USDC_SEPOLIA, // USDC token address
-            amountInUnits, // amount in 6 decimals
             BigInt(0), // maxFee (0 for demo, bridge will use default)
             '0x' as `0x${string}`, // hookData (empty for v1)
           ],
+          gas: BigInt(500000), // explicit gas limit
         },
         {
           onSuccess: (hash) => {

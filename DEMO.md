@@ -43,129 +43,210 @@
 
 ---
 
-## Video Script
+## Pitch Video Script (3-4 minutes)
 
-### Opening (0:00 - 0:15)
-
-**[Screen: Landing page of StackPay Links]**
-
-> "Hi, I'm presenting StackPay Links - cross-chain payment links that bridge USDC from Ethereum to USDCx on Stacks, using Circle's xReserve bridge."
+> **Note:** This is a PITCH video, not just a demo. It should explain the project, integration approach, and potential impact.
 
 ---
 
-### Problem Statement (0:15 - 0:30)
+### INTRO - Hook (0:00 - 0:15)
 
-**[Screen: Show problem illustration or text]**
+**[Screen: You on camera or animated title card]**
 
-> "The problem: Merchants on Stacks want to accept payments, but most users only have Ethereum wallets with USDC. Currently, there's no simple way for Ethereum users to pay Stacks merchants directly."
-
----
-
-### Solution Introduction (0:30 - 0:50)
-
-**[Screen: Landing page features]**
-
-> "StackPay Links solves this. Think of it as 'Stripe Payment Links, but cross-chain into Bitcoin L2.' Merchants create a simple payment link, share it with anyone, and payers can pay using any Ethereum wallet. The USDC automatically bridges to USDCx on Stacks."
+> "What if paying a Stacks merchant was as easy as clicking a link? No bridging. No new wallet. Just pay."
+>
+> "I'm [Your Name] from Whyme Labs, and this is StackPay Links."
 
 ---
 
-### Demo: Creating a Payment Link (0:50 - 1:30)
+### THE PROBLEM (0:15 - 0:45)
 
-**[Screen: Navigate to /create page]**
+**[Screen: Problem visualization - show the friction]**
 
-> "Let me show you how it works. First, I'll create a payment link as a merchant."
+> "Here's the problem. Stacks is building the future of Bitcoin DeFi, and USDCx brings native USDC to the ecosystem."
+>
+> "But there's a gap. Most crypto users today hold USDC on Ethereum. If a Stacks merchant wants to accept payment, their customer has to:"
 
-**[Action: Fill in the form]**
+**[Show numbered list on screen]**
 
-> "I enter my Stacks testnet address where I want to receive USDCx..."
-
-> "Set the amount - let's say 2 USDC..."
-
-> "And add an optional memo - 'Coffee order'..."
-
-**[Action: Click Create Payment Link]**
-
-> "Click create, and my payment link is ready!"
-
-**[Screen: Show the generated link and QR code]**
-
-> "I can copy this link or show the QR code. Let me share this with my payer."
+> "One - Figure out what bridging means.
+> Two - Navigate to a bridge interface.
+> Three - Wait for the transaction.
+> Four - Then finally pay the merchant."
+>
+> "That's too much friction. Most users give up."
 
 ---
 
-### Demo: Payer Experience (1:30 - 2:30)
+### THE SOLUTION (0:45 - 1:15)
 
-**[Screen: Payment page]**
+**[Screen: StackPay Links landing page]**
 
-> "Now, from the payer's perspective. They open the link and see the payment request - 2 USDC with the memo."
+> "StackPay Links eliminates all of that."
+>
+> "Think of it as Stripe Payment Links, but cross-chain into Bitcoin Layer 2."
 
-**[Action: Connect wallet]**
+**[Screen: Simple flow diagram]**
 
-> "They connect their Ethereum wallet - in this case, MetaMask on Sepolia testnet."
-
-**[Screen: Show wallet balance and payment details]**
-
-> "The page shows their USDC balance and the bridge route: Sepolia USDC will be converted to Stacks USDCx via Circle xReserve."
-
-**[Action: Click Pay button]**
-
-> "Click pay, approve the USDC spending in MetaMask..."
-
-**[Action: Confirm transaction]**
-
-> "And confirm the deposit transaction. That's it from the payer's side!"
+> "Merchants create a payment link with their Stacks address and amount. Share it via text, email, or QR code. The payer clicks, connects their Ethereum wallet, and pays. That's it."
+>
+> "Behind the scenes, we use Circle's xReserve bridge to convert USDC to USDCx automatically. The merchant receives native USDCx on Stacks."
 
 ---
 
-### Demo: Status Tracking (2:30 - 3:00)
+### LIVE DEMO (1:15 - 2:30)
 
-**[Screen: Status page]**
+**[Screen: Browser showing stackpay.whymelabs.com]**
 
-> "Both parties can track the payment in real-time. We see the progress through each stage:"
+> "Let me show you how it works."
 
-> "Created... Depositing... Confirming on Ethereum... Bridging to Stacks..."
+#### Creating a Payment Link (1:15 - 1:45)
 
-**[Screen: Show completed status]**
+**[Navigate to /create]**
 
-> "And finally, complete! The USDCx has been minted and delivered to the merchant's Stacks address."
+> "As a merchant, I go to Create Payment Link. I enter my Stacks testnet address..."
+
+**[Fill form]**
+
+> "...set the amount to 5 USDC, add a memo 'Coffee order', and click Create."
+
+**[Show generated link + QR]**
+
+> "Instantly, I get a shareable link and QR code. I can text this to my customer or display it at my shop."
+
+#### Payer Experience (1:45 - 2:15)
+
+**[Open pay page]**
+
+> "Now I'm the customer. I click the link and see the payment request - 5 USDC for coffee."
+
+**[Connect wallet]**
+
+> "I connect MetaMask. The app shows my USDC balance and explains the bridge route."
+
+**[Click Pay]**
+
+> "I click Pay, approve the USDC spend, and confirm the transaction."
+
+**[Show status page]**
+
+> "Done. The status page shows real-time progress: depositing, confirming, bridging..."
+
+#### Completion (2:15 - 2:30)
+
+**[Show completed status or Stacks explorer]**
+
+> "In about 15 minutes, the bridge completes. The merchant's Stacks wallet now has 5 USDCx. Payment received."
 
 ---
 
-### Technical Highlights (3:00 - 3:30)
+### INTEGRATION APPROACH (2:30 - 3:00)
 
-**[Screen: Architecture diagram or code snippets]**
+**[Screen: Technical architecture diagram]**
 
-> "Under the hood, StackPay Links uses:"
+> "Let me explain how we integrated with USDCx."
 
-> "- Circle's xReserve bridge for secure USDC to USDCx bridging"
-> "- Cloudflare Workers for serverless, globally distributed backend"
-> "- D1 database for payment link storage"
-> "- wagmi and viem for seamless wallet connections"
+**[Show diagram: Payer → xReserve → Stacks]**
 
----
+> "We use Circle's xReserve bridge contract on Ethereum Sepolia. When a user pays, we call the depositToRemote function with three key parameters:"
 
-### Key Benefits (3:30 - 3:50)
+**[Show code snippet or bullet points]**
 
-**[Screen: Benefits list]**
+> "The remote domain - 10003 for Stacks.
+> The recipient's Stacks address encoded as bytes32.
+> And the USDC amount."
+>
+> "The bridge handles attestation, relaying, and minting USDCx on Stacks."
 
-> "Key benefits:"
+**[Show tech stack]**
 
-> "1. No Stacks wallet needed for payers - only Ethereum"
-> "2. One-click bridge experience - no manual bridging steps"
-> "3. QR code support for in-person payments"
-> "4. Real-time tracking from deposit to delivery"
+> "Our stack: Next.js for the frontend, Cloudflare Workers for serverless edge deployment, D1 for database, and wagmi plus viem for wallet connections."
 
 ---
 
-### Closing (3:50 - 4:00)
+### POTENTIAL IMPACT (3:00 - 3:30)
 
-**[Screen: Landing page with links]**
+**[Screen: Impact visualization]**
+
+> "So what's the potential impact?"
+
+**[Show bullet points as you speak]**
+
+> "First - Liquidity bridge. Billions of dollars in USDC sit on Ethereum. StackPay Links creates a direct pipeline for that liquidity to flow into Stacks."
+>
+> "Second - Merchant adoption. By removing wallet friction, we make it practical for real businesses to accept crypto on Stacks."
+>
+> "Third - User onboarding. Ethereum users can now interact with Stacks ecosystem without learning new tools. They pay, and they're done."
+
+---
+
+### FUTURE ROADMAP (3:30 - 3:45)
+
+**[Screen: Roadmap or future features]**
+
+> "Looking ahead, we plan to:"
+>
+> "Deploy to mainnet with real USDC.
+> Add merchant dashboards with payment history.
+> Support multiple currencies beyond USDC.
+> And enable peg-out for USDCx back to Ethereum."
+
+---
+
+### CLOSING (3:45 - 4:00)
+
+**[Screen: You on camera + call to action]**
 
 > "StackPay Links - bringing Ethereum liquidity to Stacks, one payment link at a time."
+>
+> "Try the live demo at stackpay.whymelabs.com. Check out our code on GitHub."
+>
+> "Thank you for watching. Let's build the future of cross-chain payments together."
 
-> "Try it now at stackpay.whymelabs.com"
+**[End card: Logo + URLs]**
 
-> "Thank you!"
+```
+StackPay Links
+
+Live Demo: stackpay.whymelabs.com
+GitHub: github.com/Whyme-Labs/intentpay
+
+Built for the Stacks x USDCx Hackathon
+```
+
+---
+
+## Quick Reference - Pitch Structure
+
+| Section | Duration | Key Message |
+|---------|----------|-------------|
+| Hook | 15 sec | Grab attention with the vision |
+| Problem | 30 sec | Bridging friction is killing adoption |
+| Solution | 30 sec | Payment links + automatic bridging |
+| Demo | 75 sec | Show the complete flow |
+| Integration | 30 sec | How we use xReserve |
+| Impact | 30 sec | Liquidity, merchants, users |
+| Roadmap | 15 sec | What's next |
+| Closing | 15 sec | Call to action |
+| **Total** | **~4 min** | |
+
+---
+
+## Recording Tips for Pitch Video
+
+1. **Start strong** - The first 10 seconds decide if judges keep watching
+2. **Face on camera** - At least for intro and closing, show yourself
+3. **Energy** - Sound excited about your project
+4. **Pace** - Speak clearly, not too fast
+5. **B-roll** - Mix screen recording with diagrams and text overlays
+6. **Music** - Light background music adds polish (royalty-free)
+7. **Edit tight** - Cut pauses and mistakes
+
+### Recommended Tools
+- **Recording**: Loom, OBS Studio, or QuickTime
+- **Editing**: DaVinci Resolve (free), CapCut, or Final Cut Pro
+- **Diagrams**: Excalidraw, Figma, or Canva
+- **Music**: YouTube Audio Library (free)
 
 ---
 
@@ -257,7 +338,7 @@ one payment link at a time.
 | Contract | Address |
 |----------|---------|
 | USDC (Sepolia) | `0x1c7d4b196cb0c7b01d743fbc6116a902379c7238` |
-| xReserve (Sepolia) | `0x008888878fcb3dfea7756fc3c1b0cd6fe44444a2` |
+| xReserve (Sepolia) | `0x008888878f94C0d87defdf0B07f46B93C1934442` |
 | Stacks Remote Domain | `10003` |
 
 ---
